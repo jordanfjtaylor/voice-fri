@@ -1,19 +1,37 @@
+/*
+ * A node that produces voice commands from string messages sent to it
+ * Facilitates the communication between sound_play and a normal node
+ * 
+ * Created by Jordan Taylor
+ */
+
 #include <ros/ros.h>
 #include <sound_play/sound_play.h>
 #include <unistd.h>
+#include <std_msgs/String.h>
 
-void initializeVoice() {
+sound_play::SoundClient *sc;
+
+/*
+ * The cb function that turns received strings into speech
+ */
+void voiceCb(const std_msgs::String::ConstPtr& msg) {
+	(*sc).say(msg->data);
 }
 
+void initVoice() {
+	sc = new sound_play::SoundClient();
+}
 
 int main(int argc, char** argv) {
 	ros::init(argc, argv, "voice");
 	ros::NodeHandle nh;
-	sound_play::SoundClient sc;
+	initVoice();
+	ros::Subscriber sub = nh.subscribe("text-to-speech", 5, voiceCb);
 	
 	while(ros::ok()) {
-		sc.say("Voice has been initialized");
-		ros::Duration(5).sleep();
+		ros::spinOnce();
 	}
+	
 	return 0;
 }
