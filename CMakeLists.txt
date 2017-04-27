@@ -16,6 +16,7 @@ find_package(catkin REQUIRED COMPONENTS
   message_generation
   sensor_msgs
   sound_play
+  geometry_msgs
 )
 
 ## System dependencies are found with CMake's conventions
@@ -140,6 +141,7 @@ include_directories(
 ## The recommended prefix ensures that target names across packages don't collide
 # add_executable(${PROJECT_NAME}_node src/speaky_node.cpp)
 add_executable(voice_node src/voice.cpp)
+add_executable(listen_node src/listener.cpp)
 
 ## Rename C++ executable without prefix
 ## The above recommended prefix causes long target names, the following renames the
@@ -156,6 +158,7 @@ add_executable(voice_node src/voice.cpp)
 #   ${catkin_LIBRARIES}
 # )
 target_link_libraries(voice_node ${catkin_LIBRARIES})
+target_link_libraries(listen_node ${catkin_LIBRARIES})
 
 #############
 ## Install ##

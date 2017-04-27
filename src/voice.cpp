@@ -27,7 +27,8 @@ int main(int argc, char** argv) {
 	ros::init(argc, argv, "voice");
 	ros::NodeHandle nh;
 	initVoice();
-	ros::Subscriber sub = nh.subscribe("textToSpeech", 5, voiceCb);
+	ros::Subscriber sub = nh.subscribe("T2S", 5, voiceCb);
+
 	
 	ros::Rate r(10);
 	while(ros::ok()) {
