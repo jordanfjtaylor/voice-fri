@@ -30,13 +30,11 @@ void cmd_vel_cb(const geometry_msgs::Twist::ConstPtr& vel)
         velocity = *vel;
 	if(moving == false && velocity.linear.x > 0) {
 		moving = true;
-		ROS_INFO("Hello?");
 		msg.data = "Started movement";
 		T2S_pub.publish(msg);
 	}
 	else if(moving == true && velocity.linear.x == 0) {
 		moving = false;
-		ROS_INFO("Bye?");
 		msg.data = "Stopped movement";
 		T2S_pub.publish(msg);
 	}
@@ -64,7 +62,6 @@ void pos_cb(const nav_msgs::Odometry::ConstPtr& odom)
 	yPos = odometer.pose.pose.position.y;
 	if(heardGoal){
 		if(fabs(xPos-goalX) < .5 && fabs(yPos-goalY) < .5) {
-			ROS_INFO("Please");
 			heardGoal = false;
 			msg.data = "Destination reached";
 			T2S_pub.publish(msg);
