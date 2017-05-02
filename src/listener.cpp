@@ -3,6 +3,7 @@
  * factors (events, velocity, etc.)
  * 
  * Created by Christian Onuogu
+ * Edited by Jordan Taylor
  */
 
 #include "ros/ros.h"
