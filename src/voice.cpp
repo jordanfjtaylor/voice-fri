@@ -28,9 +28,12 @@ int main(int argc, char** argv) {
 	ros::NodeHandle nh;
 	initVoice();
 	ros::Subscriber sub = nh.subscribe("T2S", 5, voiceCb);
+
 	
+	ros::Rate r(10);
 	while(ros::ok()) {
 		ros::spinOnce();
+		r.sleep();
 	}
 	
 	return 0;
