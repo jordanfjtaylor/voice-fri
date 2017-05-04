@@ -17,6 +17,8 @@ find_package(catkin REQUIRED COMPONENTS
   sensor_msgs
   sound_play
   geometry_msgs
+  nav_msgs
+  move_base_msgs
 )
 
 ## System dependencies are found with CMake's conventions
